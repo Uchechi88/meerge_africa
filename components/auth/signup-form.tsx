@@ -28,7 +28,7 @@ export function RestaurantSignupForm() {
     schema: RestaurantSignupFormSchema,
   });
   const [isChecked, setIsChecked]= useState(false);
-  const [phoneSignUpMessage, setPhoneSignupMessage]= useState("")
+  // const [phoneSignUpMessage, setPhoneSignupMessage]= useState({})
   const [emailSignupMessage, setEmailSignupMessage]= useState("")
   const {
     signupData,
@@ -42,7 +42,7 @@ export function RestaurantSignupForm() {
     verifyEmailIsLoading,
     verifyEmailPayload,
   } = useVerifyEmail((res: any)=>{
-    setEmailSignupMessage(res?.message)
+    setEmailSignupMessage(res)
   });
   const router = useRouter();
 
@@ -73,9 +73,13 @@ export function RestaurantSignupForm() {
     const mailVerificationPayload = { email, token };
     verifyEmailPayload(mailVerificationPayload);
   };
+  
 
   useEffect(() => {
-    if (phoneSignUpMessage || emailSignupMessage === messages.REGISTRATION_SUCCESS) {
+    console.log("email response  ==>",emailSignupMessage)
+    console.log("email mail  ==>",form.getValues("email"))
+    console.log("email error  ==>",signupError)
+    if (signupError === messages.HANDLE_SUCCESS) {
       verifyMail();
       localStorage.clear();
       Storage.set("email", form.getValues("email"));
@@ -92,7 +96,7 @@ export function RestaurantSignupForm() {
       <form onSubmit={handleSubmit} className="space-y-4 group">
         {signupError ? (
           <div className="text-center text-red-500 font-semibold">
-            {signupError === "handleSuccess is not a function"
+            {signupError === "handleSuccess is not a function" || signupError === "e is not a function"
               ? ""
               : signupError}
           </div>
@@ -197,7 +201,7 @@ export function RestaurantSignupForm() {
             .
           </FormLabel>
         </FormItem>
-        <Button type="submit" className="w-full">
+        <Button type="submit" className="w-full" disabled={!isChecked}>
           {signupIsLoading ? <LoginSpinner /> : "Create Account"}
         </Button>
       </form>

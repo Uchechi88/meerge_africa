@@ -9,7 +9,7 @@ import {messages} from "@/lib/messages"
 import LoginSpinner from "@/components/loading/login-spinner";
 const EmailVerificationPage = () => {
   const router = useRouter();
-  const [userEmail, setUserEmail] = useState<string | null>("null");
+  const [userEmail, setUserEmail] = useState<string | null>(null);
   const [message, setMessage] = useState("")
   const { resendEmaiError, resendEmaiIsLoading, resendEmaiPayload } = useResendEmail((res:any)=>{
     setMessage(res?.message)
