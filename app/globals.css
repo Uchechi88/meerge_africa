@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Poppins, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
+
+label.required {
+  @apply after:content-['*'] after:text-secondary after:ml-1;
+}
+
+/* For Webkit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+}
+
+/* For horizontal scroll containers like the top menu */
+.overflow-x-auto::-webkit-scrollbar {
+  height: 6px;
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+}
+
+.desktop-menu-link {
+  @apply hover:text-secondary transition-colors;
+}
+
+.mobile-menu-link {
+  @apply block py-2;
+}
