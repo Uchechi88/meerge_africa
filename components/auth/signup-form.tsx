@@ -79,7 +79,7 @@ export function RestaurantSignupForm() {
     console.log("email response  ==>",emailSignupMessage)
     console.log("email mail  ==>",form.getValues("email"))
     console.log("email error  ==>",signupError)
-    if (signupError === messages.HANDLE_SUCCESS) {
+    if (signupError === messages.HANDLE_SUCCESS || signupError === "e is not a function") {
       verifyMail();
       localStorage.clear();
       Storage.set("email", form.getValues("email"));
