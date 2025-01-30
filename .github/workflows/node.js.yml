@@ -1,0 +1,23 @@
+name: Deploy to AWS Amplify
+
+on:
+  push:
+    branches:
+      - main  # Deploy when code is pushed to main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Next.js App
+        run: npm run build
+
+      - name: Deploy to AWS Amplify
+        run: aws amplify start-job --app-id ${{ secrets.AWS_APP_ID }} --branch-name main --job-type RELEASE
