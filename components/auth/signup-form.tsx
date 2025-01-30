@@ -76,9 +76,7 @@ export function RestaurantSignupForm() {
   
 
   useEffect(() => {
-    console.log("email response  ==>",emailSignupMessage)
-    console.log("email mail  ==>",form.getValues("email"))
-    console.log("email error  ==>",signupError)
+    console.log(signupError)
     if (signupError === messages.HANDLE_SUCCESS || signupError === "e is not a function") {
       verifyMail();
       localStorage.clear();
