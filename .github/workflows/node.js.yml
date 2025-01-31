@@ -19,5 +19,16 @@ jobs:
       - name: Build Next.js App
         run: npm run build
 
-      - name: Deploy to AWS Amplify
-        run: aws amplify start-job --app-id d23dvsjll6w27s ${{ secrets.AWS_APP_ID }} --branch-name main --job-type RELEASE
+      - name: Deploy to AWS
+      - name: Configure AWS Credentials
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: eu-west-2
+        run: |
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+          aws configu re set region $AWS_REGIONS Amplify
+          
+      - name: Start AWS Amplify Deployment
+        run: aws amplify start-job --app-id d23dvsjll6w27s ${{ secrets.AWS_APP_ID }} --branch-name main --job-type RELEASE  --region $AWS_REGION
