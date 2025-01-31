@@ -20,4 +20,4 @@ jobs:
         run: npm run build
 
       - name: Deploy to AWS Amplify
-        run: aws amplify start-job --app-id ${{ secrets.AWS_APP_ID }} --branch-name main --job-type RELEASE
+        run: aws amplify start-job --app-id d23dvsjll6w27s ${{ secrets.AWS_APP_ID }} --branch-name main --job-type RELEASE
