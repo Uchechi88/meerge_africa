@@ -30,4 +30,9 @@ jobs:
           aws configure set region $AWS_REGION
 
       - name: Start AWS Amplify Deployment
-        run: aws amplify start-job --app-id d23dvsjll6w27s --branch-name main --job-type RELEASE --region eu-west-2
+        run: |
+          aws amplify start-job \
+            --app-id d23dvsjll6w27s \
+            --branch-name main \
+            --job-type RELEASE \
+            --region eu-west-2
